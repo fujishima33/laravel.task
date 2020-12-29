@@ -15,9 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::get('news/create', 'Admin\NewsController@add');
-    Route::post('news/create', 'Admin\NewsController@create'); # 追記 22(PHP/Laravel13)
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+    Route::post('news/create', 'Admin\NewsController@create')->middleware('auth');//課題22(PHP/Laravel 13)
+    Route::get('news', 'Admin\NewsController@index')->middleware('auth'); // 追記 課題25(PHP/Laravel 15)
 });
 
 Route::group(['prefix' => 'admin'], function() {
