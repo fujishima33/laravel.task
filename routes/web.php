@@ -17,10 +17,13 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
-    Route::post('news/create', 'Admin\NewsController@create')->middleware('auth');//課題22(PHP/Laravel 13)
-    Route::get('news', 'Admin\NewsController@index')->middleware('auth'); // 追記 課題25(PHP/Laravel 15)
-});
+    Route::post('news/create', 'Admin\NewsController@create')->middleware('auth');// PHP/Laravel13
+    Route::get('news', 'Admin\NewsController@index')->middleware('auth');// PHP/Laravel15
+    Route::get('news/edit', 'Admin\NewsController@edit')->middleware('auth'); // 追記 PHP/Laravel16
+    Route::post('news/edit', 'Admin\NewsController@update')->middleware('auth'); // 追記 PHP/Laravel16
+    Route::get('news/delete', 'Admin\NewsController@delete')->middleware('auth');// 追記 PHP/Laravel16
 
+});
 Route::group(['prefix' => 'admin'], function() {
     //課題21(PHP/Laravel 12) 2番　ログインしていない状態でアクセスした場合ログイン画面にリダイレクト
     Route::get('profile/create', 'Admin\ProfileController@add')->middleware('auth');
