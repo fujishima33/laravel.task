@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-// 以下を追記することでNews Modelが扱えるようになる
+// 以下を追記することでProfile Modelが扱えるようになる
 use App\Profile;
+
+use App\ProfileHistory;
+
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -58,6 +62,13 @@ class ProfileController extends Controller
       unset($profile_form['_token']);
       // 該当するデータを上書きして保存する
       $profile->fill($profile_form)->save();
+      
+      // 以下を追記 PHP/Laravel17課題
+        $history_profile = new ProfileHistory;
+        $history_profile->profile_id = $profile->id;
+        $history_profile->edited_at = Carbon::now();
+        $history_profile->save();
+      
       return redirect('admin/profile');
     }
     
