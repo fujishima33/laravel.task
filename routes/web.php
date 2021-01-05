@@ -51,3 +51,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 // 3.「http://XXXXXX.jp/XXX というアクセスが来たときに、 
 //    AAAControllerのbbbというAction に渡すRoutingの設定」を書いてみてください
 Route::get('XXX', 'Admin\AAAController@bbb');
+
+Route::get('/', 'NewsController@index'); //追記 PHP/Laravel 29
+Route::get('/profile', 'ProfileController@index'); //追記 PHP/Laravel 29
