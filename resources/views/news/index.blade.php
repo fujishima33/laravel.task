@@ -1,6 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
+    <div class="newssite"><h1>　課題テスト</h1></div>
     <div class="container">
         <hr color="#c0c0c0">
         @if (!is_null($headline))
